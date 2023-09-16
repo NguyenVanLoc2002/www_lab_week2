@@ -26,6 +26,10 @@ dependencies {
   compileOnly('jakarta.ws.rs:jakarta.ws.rs-api:3.0.0')
   compileOnly('jakarta.servlet:jakarta.servlet-api:5.0.0')
 
+  implementation 'org.eclipse.persistence:org.eclipse.persistence.jpa:4.0.2'
+  implementation 'org.mariadb.jdbc:mariadb-java-client:3.2.0'
+
+
   testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
   testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
 }

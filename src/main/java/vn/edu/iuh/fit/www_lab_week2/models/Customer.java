@@ -1,41 +1,24 @@
 package vn.edu.iuh.fit.www_lab_week2.models;
 
 import jakarta.persistence.*;
-import vn.edu.iuh.fit.www_lab_week2.enums.EmployeeStatus;
-
-import java.sql.Date;
-import java.util.List;
 
 @Entity
-@Table(name = "employee")
+@Table(name = "customer")
 @NamedQueries(
-        @NamedQuery(name = "Employee.findAll", query = "select e from employee e where e.status =1")
+        @NamedQuery(name = "Customer.findAll", query = "select c from customer c ")
 )
-
-public class Employee {
+public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "emp_id")
+    @Column(name = "cust_id")
     private long id;
-    @Column(name = "full_name", length = 150, nullable = false)
+
+    @Column(name = "cust_name", length = 150, nullable = false)
     private String name;
-    @Column(nullable = false)
-    private Date dob;
-    @Column(unique = true, length = 150)
+
     private String email;
-    @Column(nullable = false, length = 15)
     private String phone;
-    @Column(length = 250, nullable = false)
     private String address;
-
-    @OneToMany
-    private List<Order> orderList;
-
-    public void setStatus(EmployeeStatus status) {
-        this.status = status;
-    }
-
-    private EmployeeStatus status;
 
     public long getId() {
         return id;
@@ -51,18 +34,6 @@ public class Employee {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Date getDob() {
-        return dob;
-    }
-
-    public void setDob(Date dob) {
-        this.dob = dob;
-    }
-
-    public EmployeeStatus getStatus() {
-        return status;
     }
 
     public String getEmail() {
@@ -89,31 +60,25 @@ public class Employee {
         this.address = address;
     }
 
-
-
-    public Employee() {
+    public Customer() {
     }
 
-    public Employee(long id, String name, Date dob, String email, String phone, String address, EmployeeStatus status) {
+    public Customer(long id, String name, String email, String phone, String address) {
         this.id = id;
         this.name = name;
-        this.dob = dob;
         this.email = email;
         this.phone = phone;
         this.address = address;
-        this.status = status;
     }
 
     @Override
     public String toString() {
-        return "Employee{" +
+        return "Customer{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", dob=" + dob +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
                 ", address='" + address + '\'' +
-                ", status=" + status +
                 '}';
     }
 }
