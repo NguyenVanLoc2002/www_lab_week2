@@ -1,14 +1,40 @@
 package vn.edu.iuh.fit.www_lab_week2.models;
 
+import jakarta.persistence.*;
 import vn.edu.iuh.fit.www_lab_week2.enums.ProductStatus;
 
+import java.util.List;
+
+
+//Ghi chú : do bài của em làm trên máy trường do tiết trước có bạn Minh Hồng
+//ngồi làm nhưng không thoát GitHub trong intelliJ máy  em ngồi
+//và  em không để ý nên đã commit bài nhầm vào tài khoản của bạn  chứ không phải em copy bài ạ!
+@Entity
+@Table(name = "product")
+@NamedQueries(
+        @NamedQuery(name = "Product.findAll", query = "select p from product p")
+)
 public class Product {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Column(length = 150, nullable = false)
     private String name;
+
+    @Column(length = 300, nullable = false)
     private String description;
+
+    @Column(length = 120, nullable = false)
     private String unit;
+    @Column(length = 120, nullable = false)
     private String manufacturer_name;
+
+    @Column(length = 300)
     private ProductStatus status;
+
+    @OneToMany
+    private List<ProductImage> productImages;
 
     public long getId() {
         return id;

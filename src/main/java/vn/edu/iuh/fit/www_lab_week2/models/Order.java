@@ -1,13 +1,35 @@
 package vn.edu.iuh.fit.www_lab_week2.models;
 
+import jakarta.persistence.*;
+
 import java.sql.Timestamp;
 import java.util.Date;
 
+
+//Ghi chú : do bài của em làm trên máy trường do tiết trước có bạn Minh Hồng
+//ngồi làm nhưng không thoát GitHub trong intelliJ máy  em ngồi
+//và  em không để ý nên đã commit bài nhầm vào tài khoản của bạn  chứ không phải em copy bài ạ!
+@Entity
+@Table(name = "order")
+@NamedQueries(
+        @NamedQuery(name = "Order.findAll", query = "select  o from order o")
+)
 public class Order {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "order_id")
     private long id;
-    private Timestamp order_date;
-    private long emp_id;
-    private long cust_id;
+
+    @Column(name = "order_date")
+    private Timestamp date;
+
+    @ManyToOne
+    @JoinColumn(name = "emp_id")
+    private Employee employee;
+
+    @ManyToOne
+    @JoinColumn(name = "cust_id")
+    private Customer customer;
 
     public long getId() {
         return id;
@@ -17,47 +39,47 @@ public class Order {
         this.id = id;
     }
 
-    public Timestamp getOrder_date() {
-        return order_date;
+    public Timestamp getDate() {
+        return date;
     }
 
-    public void setOrder_date(Timestamp order_date) {
-        this.order_date = order_date;
+    public void setDate(Timestamp date) {
+        this.date = date;
     }
 
-    public long getEmp_id() {
-        return emp_id;
+    public Employee getEmployee() {
+        return employee;
     }
 
-    public void setEmp_id(long emp_id) {
-        this.emp_id = emp_id;
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
-    public long getCust_id() {
-        return cust_id;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setCust_id(long cust_id) {
-        this.cust_id = cust_id;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     public Order() {
     }
 
-    public Order(long id, Timestamp order_date, long emp_id, long cust_id) {
+    public Order(long id, Timestamp date, Employee employee, Customer customer) {
         this.id = id;
-        this.order_date = order_date;
-        this.emp_id = emp_id;
-        this.cust_id = cust_id;
+        this.date = date;
+        this.employee = employee;
+        this.customer = customer;
     }
 
     @Override
     public String toString() {
         return "Order{" +
                 "id=" + id +
-                ", order_date=" + order_date +
-                ", emp_id=" + emp_id +
-                ", cust_id=" + cust_id +
+                ", date=" + date +
+                ", employee=" + employee +
+                ", customer=" + customer +
                 '}';
     }
 }

@@ -1,5 +1,8 @@
 package vn.edu.iuh.fit.www_lab_week2.models;
 
+//Ghi chú : do bài của em làm trên máy trường do tiết trước có bạn Minh Hồng
+//ngồi làm nhưng không thoát GitHub trong intelliJ máy  em ngồi
+//và  em không để ý nên đã commit bài nhầm vào tài khoản của bạn  chứ không phải em copy bài ạ!
 public class Order_detail {
     private long id;
     private String product_id;

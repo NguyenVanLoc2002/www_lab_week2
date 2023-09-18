@@ -1,9 +1,12 @@
 package vn.edu.iuh.fit.www_lab_week2.models;
 
 import java.sql.Timestamp;
-import java.util.Date;
 
-public class product_price {
+
+//Ghi chú : do bài của em làm trên máy trường do tiết trước có bạn Minh Hồng
+//ngồi làm nhưng không thoát GitHub trong intelliJ máy  em ngồi
+//và  em không để ý nên đã commit bài nhầm vào tài khoản của bạn  chứ không phải em copy bài ạ!
+public class ProductPrice {
     private long product_id;
     private Timestamp price_date_time;
     private double price;
@@ -41,10 +44,10 @@ public class product_price {
         this.note = note;
     }
 
-    public product_price() {
+    public ProductPrice() {
     }
 
-    public product_price(long product_id, Timestamp price_date_time, double price, String note) {
+    public ProductPrice(long product_id, Timestamp price_date_time, double price, String note) {
         this.product_id = product_id;
         this.price_date_time = price_date_time;
         this.price = price;

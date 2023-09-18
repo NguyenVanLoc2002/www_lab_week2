@@ -6,6 +6,10 @@ import vn.edu.iuh.fit.www_lab_week2.enums.EmployeeStatus;
 import java.sql.Date;
 import java.util.List;
 
+
+//Ghi chú : do bài của em làm trên máy trường do tiết trước có bạn Minh Hồng
+//ngồi làm nhưng không thoát GitHub trong intelliJ máy  em ngồi
+//và  em không để ý nên đã commit bài nhầm vào tài khoản của bạn  chứ không phải em copy bài ạ!
 @Entity
 @Table(name = "employee")
 @NamedQueries(
@@ -28,7 +32,7 @@ public class Employee {
     @Column(length = 250, nullable = false)
     private String address;
 
-    @OneToMany
+    @OneToMany(mappedBy = "employee")
     private List<Order> orderList;
 
     public void setStatus(EmployeeStatus status) {
