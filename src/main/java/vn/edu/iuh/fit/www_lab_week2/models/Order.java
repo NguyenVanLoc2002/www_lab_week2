@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 
 //Ghi chú : do bài của em làm trên máy trường do tiết trước có bạn Minh Hồng
@@ -30,6 +31,9 @@ public class Order {
     @ManyToOne
     @JoinColumn(name = "cust_id")
     private Customer customer;
+
+    @OneToMany
+    private List<Order_detail> orderDetails;
 
     public long getId() {
         return id;

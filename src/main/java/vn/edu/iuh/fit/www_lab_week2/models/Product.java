@@ -36,6 +36,12 @@ public class Product {
     @OneToMany
     private List<ProductImage> productImages;
 
+    @OneToMany
+    private List<Order_detail> orderDetails;
+
+    @OneToMany
+    private List<ProductPrice> productPrices;
+
     public long getId() {
         return id;
     }

@@ -1,16 +1,41 @@
 package vn.edu.iuh.fit.www_lab_week2.models;
 
+import jakarta.persistence.*;
+
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 
 //Ghi chú : do bài của em làm trên máy trường do tiết trước có bạn Minh Hồng
 //ngồi làm nhưng không thoát GitHub trong intelliJ máy  em ngồi
 //và  em không để ý nên đã commit bài nhầm vào tài khoản của bạn  chứ không phải em copy bài ạ!
+
+@Entity
+@Table(name = "product_price")
+@IdClass(ProductPrice.ProductPricePK.class)
 public class ProductPrice {
+    @Id
     private long product_id;
+
+    @Id
+    @Column(nullable = false)
     private Timestamp price_date_time;
+    @Column(nullable = false)
     private double price;
     private String note;
+
+    public static class ProductPricePK implements Serializable{
+        private long product_id;
+        private Timestamp price_date_time;
+
+        public ProductPricePK() {
+        }
+
+        public ProductPricePK(long product_id, Timestamp price_date_time) {
+            this.product_id = product_id;
+            this.price_date_time = price_date_time;
+        }
+    }
 
     public long getProduct_id() {
         return product_id;
