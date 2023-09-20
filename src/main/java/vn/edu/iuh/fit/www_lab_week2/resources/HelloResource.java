@@ -1,4 +1,4 @@
-package vn.edu.iuh.fit.www_lab_week2;
+package vn.edu.iuh.fit.www_lab_week2.resources;
 
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;

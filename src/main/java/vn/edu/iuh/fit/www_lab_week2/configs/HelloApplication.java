@@ -1,4 +1,4 @@
-package vn.edu.iuh.fit.www_lab_week2;
+package vn.edu.iuh.fit.www_lab_week2.configs;
 
 import jakarta.ws.rs.ApplicationPath;
 import jakarta.ws.rs.core.Application;
