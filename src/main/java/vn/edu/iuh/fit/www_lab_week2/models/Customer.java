@@ -2,6 +2,8 @@ package vn.edu.iuh.fit.www_lab_week2.models;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 
 //Ghi chú : do bài của em làm trên máy trường do tiết trước có bạn Minh Hồng
 //ngồi làm nhưng không thoát GitHub trong intelliJ máy  em ngồi
@@ -19,12 +21,14 @@ public class Customer {
 
     @Column(name = "cust_name", length = 150, nullable = false)
     private String name;
-    @Column(name = "email" , length = 70, nullable = false)
+    @Column(name = "email", length = 70, nullable = false)
     private String email;
     @Column(name = "phone", length = 20, nullable = false)
     private String phone;
-    @Column(name = "address" , length = 200, nullable = false)
+    @Column(name = "address", length = 200, nullable = false)
     private String address;
+    @OneToMany
+    private List<Order> orderList;
 
     public long getId() {
         return id;
@@ -66,6 +70,14 @@ public class Customer {
         this.address = address;
     }
 
+    public List<Order> getOrderList() {
+        return orderList;
+    }
+
+    public void setOrderList(List<Order> orderList) {
+        this.orderList = orderList;
+    }
+
     public Customer() {
     }
 
@@ -77,6 +89,15 @@ public class Customer {
         this.address = address;
     }
 
+    public Customer(long id, String name, String email, String phone, String address, List<Order> orderList) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.address = address;
+        this.orderList = orderList;
+    }
+
     @Override
     public String toString() {
         return "Customer{" +
@@ -85,6 +106,7 @@ public class Customer {
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
                 ", address='" + address + '\'' +
+                ", orderList=" + orderList +
                 '}';
     }
 }

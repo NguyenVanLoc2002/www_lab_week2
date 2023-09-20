@@ -17,6 +17,7 @@ import java.util.List;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "product_id")
     private long id;
 
     @Column(length = 150, nullable = false)
@@ -30,16 +31,17 @@ public class Product {
     @Column(length = 120, nullable = false)
     private String manufacturer_name;
 
-    @Column(length = 300)
+    @Enumerated(EnumType.ORDINAL)
+    @Column(nullable = false)
     private ProductStatus status;
 
-    @OneToMany
+    @OneToMany(mappedBy = "product")
     private List<ProductImage> productImages;
 
-    @OneToMany
+    @OneToMany(mappedBy = "product")
     private List<Order_detail> orderDetails;
 
-    @OneToMany
+    @OneToMany(mappedBy = "")
     private List<ProductPrice> productPrices;
 
     public long getId() {

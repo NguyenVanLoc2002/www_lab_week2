@@ -3,6 +3,7 @@ package vn.edu.iuh.fit.www_lab_week2.models;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class Order {
     private long id;
 
     @Column(name = "order_date")
-    private Timestamp date;
+    private LocalDateTime date;
 
     @ManyToOne
     @JoinColumn(name = "emp_id")
@@ -43,11 +44,11 @@ public class Order {
         this.id = id;
     }
 
-    public Timestamp getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(Timestamp date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 
@@ -70,7 +71,7 @@ public class Order {
     public Order() {
     }
 
-    public Order(long id, Timestamp date, Employee employee, Customer customer) {
+    public Order(long id, LocalDateTime date, Employee employee, Customer customer) {
         this.id = id;
         this.date = date;
         this.employee = employee;

@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 
 //Ghi chú : do bài của em làm trên máy trường do tiết trước có bạn Minh Hồng
@@ -12,44 +14,46 @@ import java.sql.Timestamp;
 
 @Entity
 @Table(name = "product_price")
-@IdClass(ProductPrice.ProductPricePK.class)
+//@IdClass(ProductPrice.ProductPricePK.class)
 public class ProductPrice {
-    @Id
-    private long product_id;
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
 
     @Id
     @Column(nullable = false)
-    private Timestamp price_date_time;
+    private LocalDateTime price_date_time;
     @Column(nullable = false)
     private double price;
     private String note;
+//
+//    public static class ProductPricePK implements Serializable{
+//        private long product_id;
+//        private Timestamp price_date_time;
+//
+//        public ProductPricePK() {
+//        }
+//
+//        public ProductPricePK(long product_id, Timestamp price_date_time) {
+//            this.product_id = product_id;
+//            this.price_date_time = price_date_time;
+//        }
+//    }
 
-    public static class ProductPricePK implements Serializable{
-        private long product_id;
-        private Timestamp price_date_time;
 
-        public ProductPricePK() {
-        }
-
-        public ProductPricePK(long product_id, Timestamp price_date_time) {
-            this.product_id = product_id;
-            this.price_date_time = price_date_time;
-        }
+    public Product getProduct() {
+        return product;
     }
 
-    public long getProduct_id() {
-        return product_id;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
-    public void setProduct_id(long product_id) {
-        this.product_id = product_id;
-    }
-
-    public Timestamp getPrice_date_time() {
+    public LocalDateTime getPrice_date_time() {
         return price_date_time;
     }
 
-    public void setPrice_date_time(Timestamp price_date_time) {
+    public void setPrice_date_time(LocalDateTime price_date_time) {
         this.price_date_time = price_date_time;
     }
 
@@ -72,8 +76,8 @@ public class ProductPrice {
     public ProductPrice() {
     }
 
-    public ProductPrice(long product_id, Timestamp price_date_time, double price, String note) {
-        this.product_id = product_id;
+    public ProductPrice(Product product, LocalDateTime price_date_time, double price, String note) {
+        this.product = product;
         this.price_date_time = price_date_time;
         this.price = price;
         this.note = note;
@@ -81,8 +85,8 @@ public class ProductPrice {
 
     @Override
     public String toString() {
-        return "product_price{" +
-                "product_id=" + product_id +
+        return "ProductPrice{" +
+                "product=" + product +
                 ", price_date_time=" + price_date_time +
                 ", price=" + price +
                 ", note='" + note + '\'' +

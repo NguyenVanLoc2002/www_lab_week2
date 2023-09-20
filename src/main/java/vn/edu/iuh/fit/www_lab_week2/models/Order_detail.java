@@ -11,13 +11,16 @@ import java.util.List;
 
 @Entity
 @Table(name = "order_detail")
-@IdClass(Order_detail.OrderProductPK.class)
+//@IdClass(Order_detail.OrderProductPK.class)
 public class Order_detail {
-    @Id
-    private long order_id;
 
-    @Id
-    private long product_id;
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    private Order order;
+
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
 
     @Column(nullable = false)
     private int quantity;
@@ -25,36 +28,35 @@ public class Order_detail {
     private double price;
     private String note;
 
-    @OneToMany
-    private List<Product> products;
 
-    public static class OrderProductPK implements Serializable{
-        private long order_id;
-        private long product_id;
+//    public static class OrderProductPK implements Serializable{
+//        private long order_id;
+//        private long product_id;
+//
+//        public OrderProductPK() {
+//        }
+//
+//        public OrderProductPK(long order_id, long product_id) {
+//            this.order_id = order_id;
+//            this.product_id = product_id;
+//        }
+//    }
 
-        public OrderProductPK() {
-        }
 
-        public OrderProductPK(long order_id, long product_id) {
-            this.order_id = order_id;
-            this.product_id = product_id;
-        }
+    public Order getOrder() {
+        return order;
     }
 
-    public long getOrder_id() {
-        return order_id;
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
-    public void setOrder_id(long order_id) {
-        this.order_id = order_id;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setProduct_id(long product_id) {
-        this.product_id = product_id;
-    }
-
-    public long getProduct_id() {
-        return product_id;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     public int getQuantity() {
@@ -84,9 +86,9 @@ public class Order_detail {
     public Order_detail() {
     }
 
-    public Order_detail(long order_id, long product_id, int quantity, double price, String note) {
-        this.order_id = order_id;
-        this.product_id = product_id;
+    public Order_detail(Order order, Product product, int quantity, double price, String note) {
+        this.order = order;
+        this.product = product;
         this.quantity = quantity;
         this.price = price;
         this.note = note;
@@ -95,8 +97,8 @@ public class Order_detail {
     @Override
     public String toString() {
         return "Order_detail{" +
-                "order_id=" + order_id +
-                ", product_id=" + product_id +
+                "order=" + order +
+                ", product=" + product +
                 ", quantity=" + quantity +
                 ", price=" + price +
                 ", note='" + note + '\'' +
