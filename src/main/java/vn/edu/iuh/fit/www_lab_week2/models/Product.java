@@ -1,5 +1,6 @@
 package vn.edu.iuh.fit.www_lab_week2.models;
 
+import jakarta.json.bind.annotation.JsonbTransient;
 import jakarta.persistence.*;
 import vn.edu.iuh.fit.www_lab_week2.enums.ProductStatus;
 
@@ -12,7 +13,7 @@ import java.util.List;
 @Entity
 @Table(name = "product")
 @NamedQueries(
-        @NamedQuery(name = "Product.findAll", query = "select p from product p")
+        @NamedQuery(name = "Product.findAll", query = "select p from Product p")
 )
 public class Product {
     @Id
@@ -35,13 +36,15 @@ public class Product {
     @Column(nullable = false)
     private ProductStatus status;
 
+    @JsonbTransient
     @OneToMany(mappedBy = "product")
     private List<ProductImage> productImages;
-
+    @JsonbTransient
     @OneToMany(mappedBy = "product")
     private List<Order_detail> orderDetails;
 
-    @OneToMany(mappedBy = "")
+    @JsonbTransient
+    @OneToMany(mappedBy = "product")
     private List<ProductPrice> productPrices;
 
     public long getId() {
@@ -105,6 +108,18 @@ public class Product {
         this.status = status;
     }
 
+    public Product(long id, String name, String description, String unit, String manufacturer_name, ProductStatus status, List<ProductImage> productImages, List<Order_detail> orderDetails, List<ProductPrice> productPrices) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.unit = unit;
+        this.manufacturer_name = manufacturer_name;
+        this.status = status;
+        this.productImages = productImages;
+        this.orderDetails = orderDetails;
+        this.productPrices = productPrices;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
@@ -114,6 +129,9 @@ public class Product {
                 ", unit='" + unit + '\'' +
                 ", manufacturer_name='" + manufacturer_name + '\'' +
                 ", status=" + status +
+                ", productImages=" + productImages +
+                ", orderDetails=" + orderDetails +
+                ", productPrices=" + productPrices +
                 '}';
     }
 }

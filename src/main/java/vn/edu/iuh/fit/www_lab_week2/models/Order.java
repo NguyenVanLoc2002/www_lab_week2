@@ -1,5 +1,6 @@
 package vn.edu.iuh.fit.www_lab_week2.models;
 
+import jakarta.json.bind.annotation.JsonbTransient;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
@@ -12,9 +13,9 @@ import java.util.List;
 //ngồi làm nhưng không thoát GitHub trong intelliJ máy  em ngồi
 //và  em không để ý nên đã commit bài nhầm vào tài khoản của bạn  chứ không phải em copy bài ạ!
 @Entity
-@Table(name = "order")
+@Table(name = "orders")
 @NamedQueries(
-        @NamedQuery(name = "Order.findAll", query = "select  o from order o")
+        @NamedQuery(name = "Order.findAll", query = "select  o from Order o")
 )
 public class Order {
     @Id
@@ -33,7 +34,8 @@ public class Order {
     @JoinColumn(name = "cust_id")
     private Customer customer;
 
-    @OneToMany
+    @JsonbTransient
+    @OneToMany(mappedBy = "order")
     private List<Order_detail> orderDetails;
 
     public long getId() {
@@ -78,6 +80,14 @@ public class Order {
         this.customer = customer;
     }
 
+    public Order(long id, LocalDateTime date, Employee employee, Customer customer, List<Order_detail> orderDetails) {
+        this.id = id;
+        this.date = date;
+        this.employee = employee;
+        this.customer = customer;
+        this.orderDetails = orderDetails;
+    }
+
     @Override
     public String toString() {
         return "Order{" +
@@ -85,6 +95,7 @@ public class Order {
                 ", date=" + date +
                 ", employee=" + employee +
                 ", customer=" + customer +
+                ", orderDetails=" + orderDetails +
                 '}';
     }
 }

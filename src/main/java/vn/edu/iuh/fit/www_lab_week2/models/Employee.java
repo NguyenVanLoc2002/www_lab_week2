@@ -1,5 +1,6 @@
 package vn.edu.iuh.fit.www_lab_week2.models;
 
+import jakarta.json.bind.annotation.JsonbTransient;
 import jakarta.persistence.*;
 import vn.edu.iuh.fit.www_lab_week2.enums.EmployeeStatus;
 
@@ -15,7 +16,7 @@ import java.util.List;
 @Entity
 @Table(name = "employee")
 @NamedQueries(
-        @NamedQuery(name = "Employee.findAll", query = "select e from employee e where e.status =1")
+        @NamedQuery(name = "Employee.findAll", query = "select e from Employee e where e.employeeStatus = vn.edu.iuh.fit.www_lab_week2.enums.EmployeeStatus.ACTIVE")
 )
 
 public class Employee {
@@ -27,7 +28,7 @@ public class Employee {
     private String name;
     @Column(nullable = false)
     private LocalDateTime dob;
-    @Column(unique = true, length = 150)
+    @Column(nullable = false, length = 150)
     private String email;
     @Column(nullable = false, length = 15)
     private String phone;
@@ -37,14 +38,11 @@ public class Employee {
     @Column(name = "status", nullable = false)
     private EmployeeStatus employeeStatus;
 
+    @JsonbTransient
     @OneToMany(mappedBy = "employee")
     private List<Order> orderList;
 
-    public void setStatus(EmployeeStatus status) {
-        this.status = status;
-    }
 
-    private EmployeeStatus status;
 
     public long getId() {
         return id;
@@ -86,9 +84,6 @@ public class Employee {
         this.orderList = orderList;
     }
 
-    public EmployeeStatus getStatus() {
-        return status;
-    }
 
     public String getEmail() {
         return email;
@@ -128,7 +123,7 @@ public class Employee {
         this.address = address;
     }
 
-    public Employee(long id, String name, LocalDateTime dob, String email, String phone, String address, EmployeeStatus employeeStatus, List<Order> orderList, EmployeeStatus status) {
+    public Employee(long id, String name, LocalDateTime dob, String email, String phone, String address, EmployeeStatus employeeStatus, List<Order> orderList) {
         this.id = id;
         this.name = name;
         this.dob = dob;
@@ -137,7 +132,6 @@ public class Employee {
         this.address = address;
         this.employeeStatus = employeeStatus;
         this.orderList = orderList;
-        this.status = status;
     }
 
     @Override
@@ -150,8 +144,6 @@ public class Employee {
                 ", phone='" + phone + '\'' +
                 ", address='" + address + '\'' +
                 ", employeeStatus=" + employeeStatus +
-                ", orderList=" + orderList +
-                ", status=" + status +
                 '}';
     }
 }

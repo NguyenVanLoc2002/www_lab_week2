@@ -11,13 +11,14 @@ import java.util.List;
 
 @Entity
 @Table(name = "order_detail")
-//@IdClass(Order_detail.OrderProductPK.class)
+@IdClass(Order_detail.OrderProductPK.class)
 public class Order_detail {
-
+    @Id
     @ManyToOne
     @JoinColumn(name = "order_id")
     private Order order;
 
+    @Id
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
@@ -29,18 +30,19 @@ public class Order_detail {
     private String note;
 
 
-//    public static class OrderProductPK implements Serializable{
-//        private long order_id;
-//        private long product_id;
-//
-//        public OrderProductPK() {
-//        }
-//
-//        public OrderProductPK(long order_id, long product_id) {
-//            this.order_id = order_id;
-//            this.product_id = product_id;
-//        }
-//    }
+
+    public static class OrderProductPK implements Serializable{
+        private long order;
+        private long product;
+
+        public OrderProductPK() {
+        }
+
+        public OrderProductPK(long order_id, long product_id) {
+            this.order = order;
+            this.product = product;
+        }
+    }
 
 
     public Order getOrder() {
