@@ -49,26 +49,4 @@ public class EmployeeServices {
         return employeeRepository.getAllEmp();
     }
 
-
-    //    Thống kê order theo nhân viên bán hàng trong 1 khoảng thời gian
-    public List<Order> getOrdersByPeriod(long empId, Date from, Date to) {
-        //Kiểm tra nhân viên còn làm hay khong
-        List<Order> list = orderReponsitory.findByEmployeeId(empId);
-        if (list != null) {
-            // Chuyển đổi từ java.sql.Date sang java.util.Date
-            java.util.Date utilFromDate = new java.util.Date(from.getTime());
-            java.util.Date utilToDate = new java.util.Date(to.getTime());
-            //Chuyển đổi từ java.util.Date sang LocalDateTime
-            LocalDateTime fromDate = utilFromDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
-            LocalDateTime toDate = utilToDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
-            List<Order> orderList = new ArrayList<>();
-            for (Order order : list) {
-                if (!order.getDate().isBefore(fromDate) && !order.getDate().isAfter(toDate)) {
-                    orderList.add(order);
-                }
-            }
-            return orderList;
-        }
-        return null;
-    }
 }

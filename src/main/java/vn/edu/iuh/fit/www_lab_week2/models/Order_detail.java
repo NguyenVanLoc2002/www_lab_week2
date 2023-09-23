@@ -12,6 +12,9 @@ import java.util.List;
 @Entity
 @Table(name = "order_detail")
 @IdClass(Order_detail.OrderProductPK.class)
+@NamedQueries(
+        @NamedQuery(name = "Order_detail.findAll",  query = "select od from Order_detail  od")
+)
 public class Order_detail {
     @Id
     @ManyToOne
