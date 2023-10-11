@@ -12,6 +12,9 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "product_price")
 //@IdClass(ProductPrice.ProductPricePK.class)
+@NamedQueries(
+        @NamedQuery(name = "ProductPrice.findAll", query = "select pp from ProductPrice pp")
+)
 public class ProductPrice {
     @ManyToOne
     @JoinColumn(name = "product_id")

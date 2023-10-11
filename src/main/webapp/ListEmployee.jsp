@@ -21,17 +21,25 @@
     <tr>
         <th>ID</th>
         <th>NAME</th>
+        <th>DOB</th>
         <th>PHONE</th>
         <th>ADDRESS</th>
         <th>EMAIL</th>
-        <th>DOB</th>
         <th>STATUS</th>
+        <th><a href="insertEmployee.jsp">INSERT</a></th>
     </tr>
     <%
         for (Employee employee : employeeList) {
     %>
     <tr>
-        <td><%employee.getId()%></td>
+        <td><%=employee.getId()%></td>
+        <td><%=employee.getName()%></td>
+        <td><%=employee.getDob()%></td>
+        <td><%=employee.getPhone()%></td>
+        <td><%=employee.getAddress()%></td>
+        <td><%=employee.getEmail()%></td>
+        <td><%=employee.getEmployeeStatus()%></td>
+        <td></td>
     </tr>
     <%}%>
 </table>

@@ -1,0 +1,24 @@
+
+body {
+
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.product-details {
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-top: 20px;
+    background-color: #f9f9f9;
+}
+
+.product_image {
+    width: 250px;
+    height: 250px;
+}
+
+
+

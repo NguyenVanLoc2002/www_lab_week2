@@ -11,6 +11,8 @@
     <title>Title</title>
 </head>
 <body>
-    <a href="">List Employee</a>
+    <a href="insertEmployee.jsp">Insert Employee</a></br>
+    <a href="controllers?action=employee_List">List Employee</a></br>
+    <a href="controllers?action=show_Product">Show Product</a></br>
 </body>
 </html>

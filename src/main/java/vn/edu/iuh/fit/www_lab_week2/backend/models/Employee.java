@@ -4,6 +4,7 @@ import jakarta.json.bind.annotation.JsonbTransient;
 import jakarta.persistence.*;
 import vn.edu.iuh.fit.www_lab_week2.backend.enums.EmployeeStatus;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -14,7 +15,7 @@ import java.util.List;
 @Entity
 @Table(name = "employee")
 @NamedQueries(
-        @NamedQuery(name = "Employee.findAll", query = "select e from Employee e where e.employeeStatus = vn.edu.iuh.fit.www_lab_week2.enums.EmployeeStatus.ACTIVE")
+        @NamedQuery(name = "Employee.findAll", query = "select e from Employee e where e.employeeStatus = vn.edu.iuh.fit.www_lab_week2.backend.enums.EmployeeStatus.ACTIVE")
 )
 
 public class Employee {
@@ -22,15 +23,15 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "emp_id")
     private long id;
-    @Column(name = "full_name", length = 150, nullable = false)
+    @Column(name = "full_name", columnDefinition = "VARCHAR(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci",nullable = false)
     private String name;
-    @Column(nullable = false)
-    private LocalDateTime dob;
-    @Column(nullable = false, length = 150)
+    @Column(name = "dob",nullable = false)
+    private LocalDate dob;
+    @Column( name = "email",nullable = false, length = 150)
     private String email;
-    @Column(nullable = false, length = 15)
+    @Column(name = "phone",nullable = false, length = 15)
     private String phone;
-    @Column(length = 250, nullable = false)
+    @Column(name = "address", columnDefinition = "VARCHAR(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci",nullable = false)
     private String address;
     @Enumerated(EnumType.ORDINAL) // Ánh xạ enum thành giá trị số nguyên (1, 0, -1)
     @Column(name = "status", nullable = false)
@@ -58,11 +59,11 @@ public class Employee {
         this.name = name;
     }
 
-    public LocalDateTime getDob() {
+    public LocalDate getDob() {
         return dob;
     }
 
-    public void setDob(LocalDateTime dob) {
+    public void setDob(LocalDate dob) {
         this.dob = dob;
     }
 
@@ -112,7 +113,7 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(long id, String name, LocalDateTime dob, String email, String phone, String address) {
+    public Employee(long id, String name, LocalDate dob, String email, String phone, String address) {
         this.id = id;
         this.name = name;
         this.dob = dob;
@@ -121,7 +122,16 @@ public class Employee {
         this.address = address;
     }
 
-    public Employee(long id, String name, LocalDateTime dob, String email, String phone, String address, EmployeeStatus employeeStatus, List<Order> orderList) {
+    public Employee(String name, LocalDate dob, String email, String phone, String address, EmployeeStatus employeeStatus) {
+        this.name = name;
+        this.dob = dob;
+        this.email = email;
+        this.phone = phone;
+        this.address = address;
+        this.employeeStatus = employeeStatus;
+    }
+
+    public Employee(long id, String name, LocalDate dob, String email, String phone, String address, EmployeeStatus employeeStatus, List<Order> orderList) {
         this.id = id;
         this.name = name;
         this.dob = dob;

@@ -13,7 +13,7 @@ import java.util.List;
 @Entity
 @Table(name = "product")
 @NamedQueries(
-        @NamedQuery(name = "Product.findAll", query = "select p from Product p")
+        @NamedQuery(name = "Product.findAll", query = "select p from Product p where p.status=vn.edu.iuh.fit.www_lab_week2.backend.enums.ProductStatus.ACTIVE")
 )
 public class Product {
     @Id
@@ -93,6 +93,30 @@ public class Product {
 
     public void setStatus(ProductStatus status) {
         this.status = status;
+    }
+
+    public List<ProductImage> getProductImages() {
+        return productImages;
+    }
+
+    public void setProductImages(List<ProductImage> productImages) {
+        this.productImages = productImages;
+    }
+
+    public List<Order_detail> getOrderDetails() {
+        return orderDetails;
+    }
+
+    public void setOrderDetails(List<Order_detail> orderDetails) {
+        this.orderDetails = orderDetails;
+    }
+
+    public List<ProductPrice> getProductPrices() {
+        return productPrices;
+    }
+
+    public void setProductPrices(List<ProductPrice> productPrices) {
+        this.productPrices = productPrices;
     }
 
     public Product() {
