@@ -6,10 +6,9 @@ import vn.edu.iuh.fit.www_lab_week2.backend.enums.EmployeeStatus;
 
 import java.util.stream.Stream;
 
-//Tự động chuyển  đổi  đối với bất kì phương thucws nào  gọi EmployeeStatus
+//Tự động chuyển  đổi  đối với bất kì phương thức nào gọi EmployeeStatus
 @Converter(autoApply = true )
 public class EmployeeStatusConverter implements AttributeConverter<EmployeeStatus, Integer> {
-
     //Chuyển đổi  thành integer để lưu vào CSDL
     @Override
     public Integer convertToDatabaseColumn(EmployeeStatus attribute) {

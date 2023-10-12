@@ -19,7 +19,6 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cust_id")
     private long id;
-
     @Column(name = "cust_name", length = 150, nullable = false)
     private String name;
     @Column(name = "email", length = 70, nullable = false)
