@@ -30,6 +30,7 @@ public class EmployeeServices {
         if (op.isPresent()) {
             Employee employee = op.get();
             employee.setEmployeeStatus(EmployeeStatus.TERMINATED);
+            employeeRepository.updateEmp(employee);
             return true;
         }
         return false;

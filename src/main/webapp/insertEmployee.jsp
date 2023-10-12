@@ -18,9 +18,9 @@
     Phone: <input type="number" name="phone"></br>
     Address: <input name="address"></br>
     Status:</br>
-    <input type="checkbox" name="status" value="ACTIVE">ACTIVE</br>
-    <input type="checkbox" name="status" value="NO_ACTIVE">NO_ACTIVE</br>
-    <input type="checkbox" name="status" value="TERMINATED">TERMINATED</br>
+    <input type="radio" name="status" value="ACTIVE">ACTIVE<br>
+    <input type="radio" name="status" value="NO_ACTIVE">NO_ACTIVE<br>
+    <input type="radio" name="status" value="TERMINATED">TERMINATED<br>
     <input type="submit" value="Submit">
     <input type="reset" value="Reset">
 </form>

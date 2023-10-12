@@ -9,9 +9,10 @@ import jakarta.ws.rs.Path;
 import vn.edu.iuh.fit.www_lab_week2.frontend.models.EmployeeModel;
 
 import java.io.IOException;
-
+import java.util.logging.Logger;
 @WebServlet(urlPatterns = {"/controllers"})
 public class ServletController extends HttpServlet {
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String action = req.getParameter("action");
@@ -27,9 +28,31 @@ public class ServletController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String action = req.getParameter("action");
+        EmployeeModel employeeModel = new EmployeeModel();
         if (action.equals("insert_Emp")) {
-            EmployeeModel employeeModel = new EmployeeModel();
             employeeModel.insertEmp(req,resp);
+        }else if(action.equals("updateEmp")){
+            employeeModel.updateEmp(req,resp);
+        }
+    }
+
+    @Override
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        super.doPut(req, resp);
+    }
+
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String action = req.getParameter("action");
+        long employeeId= Long.parseLong(req.getParameter("id"));
+        if(action.equals("deleteEmp")){
+            EmployeeModel employeeModel = new EmployeeModel();
+            boolean rs = employeeModel.deleteEMp(employeeId);
+            if(rs){
+                resp.setStatus(HttpServletResponse.SC_OK);
+            }else {
+                resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            }
         }
     }
 }

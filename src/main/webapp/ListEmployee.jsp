@@ -17,6 +17,7 @@
     EmployeeServices employeeServices = new EmployeeServices();
     List<Employee> employeeList = employeeServices.getAll();
 %>
+<script src="js/Employee.js"></script>
 <table>
     <tr>
         <th>ID</th>
@@ -32,14 +33,22 @@
         for (Employee employee : employeeList) {
     %>
     <tr>
-        <td><%=employee.getId()%></td>
-        <td><%=employee.getName()%></td>
-        <td><%=employee.getDob()%></td>
-        <td><%=employee.getPhone()%></td>
-        <td><%=employee.getAddress()%></td>
-        <td><%=employee.getEmail()%></td>
-        <td><%=employee.getEmployeeStatus()%></td>
-        <td></td>
+        <td><%=employee.getId()%>
+        </td>
+        <td><%=employee.getName()%>
+        </td>
+        <td><%=employee.getDob()%>
+        </td>
+        <td><%=employee.getPhone()%>
+        </td>
+        <td><%=employee.getAddress()%>
+        </td>
+        <td><%=employee.getEmail()%>
+        </td>
+        <td><%=employee.getEmployeeStatus()%>
+        </td>
+        <td><a href="updateEmployee.jsp?id=<%=employee.getId()%>">UPDATE</a> <br>
+            <a href="javascript:void(0);" onclick="deleteEmployee(<%=employee.getId()%>)">DELETE</a></td>
     </tr>
     <%}%>
 </table>
