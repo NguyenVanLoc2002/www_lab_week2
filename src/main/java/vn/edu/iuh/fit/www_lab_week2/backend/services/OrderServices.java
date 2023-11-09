@@ -36,6 +36,7 @@ public class OrderServices {
     public List<Order> getOrdersByDate(Date orderDate){
         java.util.Date untilOrderDate = new java.util.Date(orderDate.getTime());
         LocalDateTime date = untilOrderDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+        //Sua thay bang select 
         List<Order> orderList= getAll();
         if(!orderList.isEmpty()){
             List<Order> list = new ArrayList<>();
@@ -50,6 +51,7 @@ public class OrderServices {
     }
 
     public List<Order> getOrdersByTimePeriod(Date from, Date to) {
+        //Sua thay bang select
         List<Order> list= getAll();
         if (list != null) {
             // Chuyển đổi từ java.sql.Date sang java.util.Date
@@ -70,7 +72,7 @@ public class OrderServices {
     }
 
     public List<Order> getOrdersByPeriod(long empId, Date from, Date to) {
-        //Kiểm tra nhân viên còn làm hay khong
+
         List<Order> list = orderReponsitory.findByEmployeeId(empId);
         if (list != null) {
             List<Order> orderList = getOrdersByTimePeriod(from,to);

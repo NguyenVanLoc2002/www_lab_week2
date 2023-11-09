@@ -10,11 +10,9 @@ import java.util.Optional;
 
 public class EmployeeServices {
     private EmployeeRepository employeeRepository;
-    private OrderReponsitory orderReponsitory;
 
     public EmployeeServices() {
         employeeRepository = new EmployeeRepository();
-        orderReponsitory = new OrderReponsitory();
     }
 
     public void insertEmp(Employee employee) {
